@@ -1,31 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Site</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; background: #f7f7f7; }
-        header { background: #333; color: white; padding: 50px 0; }
-        h1 { margin: 0; font-size: 2.5em; }
-        p { font-size: 1.2em; color: #555; }
-        a.button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        a.button:hover { background: #0056b3; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pluribus Omnia LTD</title>
+  <meta name="description" content="Pluribus Omnia LTD — Professionality and Flexibility" />
+  <meta property="og:title" content="Pluribus Omnia LTD" />
+  <meta property="og:description" content="Professionality and Flexibility" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b1220;          /* blu notte */
+      --bg-soft:#0f172a;     /* ardesia scuro */
+      --card:#111827;        /* grigio antracite */
+      --text:#e5e7eb;        /* grigio chiaro */
+      --muted:#94a3b8;       /* ardesia chiaro */
+      --accent:#38bdf8;      /* azzurro */
+      --accent-2:#22d3ee;    /* ciano */
+      --ring: rgba(56,189,248,.4);
+      --max:1100px;
+      --radius:18px;
+      --pad: clamp(16px, 2.5vw, 32px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 80% -20%, rgba(56,189,248,.12), transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, rgba(34,211,238,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg-soft));
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{color:var(--accent-2)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+    header.nav{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(11,18,32,.65);
+      border-bottom:1px solid rgba(148,163,184,.15);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800;letter-spacing:.06em}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 0 0 4px rgba(56,189,248,.15), 0 10px 30px -10px var(--ring);
+    }
+    .nav-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.7rem 1rem;border-radius:12px;font-weight:600;border:1px solid rgba(148,163,184,.25);
+      background:rgba(17,24,39,.55);
+    }
+    .btn:hover{border-color:rgba(148,163,184,.45);box-shadow:0 0 0 4px var(--ring)}
+    .btn.primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#001018;border:none
+    }
+
+    .hero{
+      padding:clamp(36px, 6vw, 72px) 0 clamp(24px, 5vw, 56px);
+      text-align:center;
+    }
+    .kicker{
+      display:inline-block; padding:.35rem .7rem; border:1px solid rgba(148,163,184,.25);
+      border-radius:999px; font-size:.85rem; color:var(--muted); margin-bottom:1rem;
+      background:rgba(17,24,39,.55)
+    }
+    h1{
+      margin:.25rem 0 .75rem; line-height:1.15;
+      font-weight:800; font-size:clamp(32px, 5vw, 60px);
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      background:linear-gradient(180deg,#fff, #c7d2fe 50%, #93c5fd);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 2px 30px rgba(56,189,248,.15);
+    }
+    .tagline{font-size:clamp(16px, 2.2vw, 22px); color:#dbeafe; opacity:.95}
+
+    .grid{
+      display:grid; gap:clamp(16px,2vw,24px);
+      grid-template-columns:repeat(12, 1fr);
+      margin: clamp(26px, 4.5vw, 48px) 0;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(17,24,39,.85), rgba(17,24,39,.65));
+      border:1px solid rgba(148,163,184,.18);
+      border-radius:var(--radius);
+      padding:clamp(16px, 2.2vw, 28px);
+      box-shadow: 0 20px 60px -30px rgba(2,8,23,.6);
+    }
+    .card h2{
+      margin-top:0; font-size:clamp(20px,2.4vw,28px); letter-spacing:.02em
+    }
+    .muted{color:var(--muted)}
+    .cols-6{grid-column: span 6}
+    .cols-12{grid-column: span 12}
+    @media (max-width:900px){
+      .cols-6{grid-column: span 12}
+    }
+
+    .list{
+      display:grid; gap:12px; margin:.5rem 0 0; padding:0; list-style:none
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.55rem .8rem; border-radius:999px;
+      background:rgba(56,189,248,.10); border:1px dashed rgba(56,189,248,.35);
+      color:#e0f2fe; font-weight:600; letter-spacing:.02em
+    }
+    .clients{
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin-top:.5rem
+    }
+    @media (max-width:700px){ .clients{grid-template-columns:1fr} }
+
+    footer{
+      border-top:1px solid rgba(148,163,184,.15);
+      margin-top: clamp(28px, 6vw, 80px);
+      background:rgba(11,18,32,.6)
+    }
+    .foot{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
+      padding:18px 0; color:var(--muted); font-size:.95rem
+    }
+
+    /* helper spacing inside sections */
+    section{scroll-margin-top:84px}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-        <p>We are coming soon – stay tuned!</p>
-        <a class="button" href="mailto:you@yourdomain.com">Contact Us</a>
-    </header>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Pluribus&nbsp;Omnia&nbsp;LTD</span>
+      </div>
+      <nav class="nav-links">
+        <a class="btn" href="#about" aria-label="Vai alla sezione About">About</a>
+        <a class="btn" href="#values" aria-label="Vai ai Valori">Valori</a>
+        <a class="btn" href="#clients" aria-label="Vai ai Clienti">Clienti</a>
+        <a class="btn" href="mailto:info@pluribusomnia.co.uk" aria-label="Contattaci via email">Email&nbsp;Us</a>
+        <!-- Sostituisci con il tuo CV -->
+        <a class="btn" href="./resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <span class="kicker">Professionality and Flexibility</span>
+      <h1>P L U R I B U S &nbsp; O M N I A</h1>
+      <p class="tagline">Soluzioni su misura, tempi certi, partnership selettive orientate al risultato.</p>
+      <div style="margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+        <a class="btn primary" href="mailto:info@pluribusomnia.co.uk">Parliamo del tuo progetto</a>
+        <a class="btn" href="#portfolio">Portfolio</a>
+      </div>
+      <!-- Se hai un logo, rimuovi il commento e aggiungi assets/logo.png
+      <div style="margin-top:28px">
+        <img src="assets/logo.png" alt="Logo Pluribus Omnia" width="160" height="160" style="opacity:.9"/>
+      </div> -->
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- ABOUT -->
+    <section id="about" class="grid">
+      <article class="card cols-6">
+        <h2>About Us</h2>
+        <p class="muted">
+          Abbiamo iniziato con la nostra founder nel 2017. Da allora Pluribus Omnia (PO) ha supportato realtà
+          che condividono i nostri standard e la nostra etica.
+        </p>
+        <p class="muted">
+          Lavorare con noi non significa solo scegliere il nostro team: significa anche che <em>noi</em> scegliamo
+          <em>voi</em> e la vostra missione.
+        </p>
+      </article>
+
+      <article class="card cols-6" id="values">
+        <h2>I nostri Valori</h2>
+        <ul class="list">
+          <li><span class="pill">Time is precious</span> <span class="muted">Pianificazione chiara, priorità corrette, esecuzione efficiente.</span></li>
+          <li><span class="pill">Outcome first</span> <span class="muted">Puntiamo al miglior risultato possibile e non accettiamo progetti in cui non crediamo.</span></li>
+          <li><span class="pill">Integrity</span> <span class="muted">Relazioni leali e durature, scelte basate su evidenza e impatto.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- CLIENTS -->
+    <section id="clients" class="grid">
+      <article class="card cols-12">
+        <h2>Past Clients</h2>
+        <div class="clients">
+          <div class="card" style="padding:16px">
+            <strong>Easywin-International Limited</strong>
+            <p class="muted" style="margin:.35rem 0 0">Condivisione di ciò che rende unica la tua attività per distinguerti dalla concorrenza.</p>
+          </div>
+          <div class="card" style="padding:16px">
+            <strong>Belgian–Luxembourg Chamber of Commerce in the UK</strong>
+            <p class="muted" style="margin:.35rem 0 0">Valorizzazione dei fattori unici e delle partnership istituzionali.</p>
+          </div>
+          <div class="card" style="padding:16px">
+            <strong>Cioccolato Maglio</strong>
+            <p class="muted" style="margin:.35rem 0 0">Heritage di prodotto, qualità e posizionamento premium.</p>
+          </div>
+          <div class="card" style="padding:16px">
+            <strong>Unite Development Group LTD</strong>
+            <p class="muted" style="margin:.35rem 0 0">Comunicazione del valore differenziante per mercati competitivi.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PORTFOLIO / CTA -->
+    <section id="portfolio" class="grid">
+      <article class="card cols-12">
+        <h2>Portfolio</h2>
+        <p class="muted">Hai un caso d’uso specifico? Scrivici: possiamo condividere esempi rilevanti e referenze.</p>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="mailto:info@pluribusomnia.co.uk?subject=Portfolio%20request">Richiedi esempi</a>
+          <!-- Se hai lavori pubblici:
+          <a class="btn" href="works/index.html">Vedi progetti</a> -->
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> Pluribus Omnia LTD • All rights reserved</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <a href="mailto:info@pluribusomnia.co.uk">info@pluribusomnia.co.uk</a>
+        <span aria-hidden="true">•</span>
+        <a href="#home">Torna su</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // anno automatico
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
-</html
+</html>
